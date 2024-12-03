@@ -34,6 +34,5 @@ public class ListDirectory {
         } catch (Exception e) {
             System.out.println("An unexpected error occurred: " + e.getMessage());
         }
-
     }
 }
