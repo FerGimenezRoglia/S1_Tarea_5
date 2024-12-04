@@ -37,7 +37,7 @@ public class DirectoryTree {
             SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
 
             for (File file : files) {
-                String indentation = "    ".repeat(depth);
+                String indentation = "   ".repeat(depth);
                 String lastModified = date.format(file.lastModified());
 
                 if (file.isDirectory()) {

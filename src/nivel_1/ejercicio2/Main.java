@@ -8,10 +8,8 @@ public class Main {
         if (args.length != 1) {
             System.out.println("Error: You must provide exactly one argument.");
         }else {
-
             String inputPath = args[0];
             listDirectoryTree(inputPath);
-
         }
     }
 }
