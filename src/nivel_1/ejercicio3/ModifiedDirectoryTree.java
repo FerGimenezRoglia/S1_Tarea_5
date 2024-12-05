@@ -45,16 +45,16 @@ public class ModifiedDirectoryTree {
 
             for (File file : files) {
 
-                //String indentation = "   ".repeat(depth);
+                String indentation = "   ".repeat(depth);
                 String lastModified = date.format(file.lastModified());
 
                 if (file.isDirectory()) {
-                    writer.write("Type [D] " + file.getName() + " __ " + lastModified);
+                    writer.write(indentation + "Type [D] " + file.getName() + " __ " + lastModified);
                     writer.newLine();
-                    listTreeRecursively(file, writer, depth + 1);
+                    listTreeRecursively(file, writer,depth + 1);
 
                 } else {
-                    writer.write("Type [F] " + file.getName() + " __ " + lastModified);
+                    writer.write(indentation + "Type [F] " + file.getName() + " __ " + lastModified);
                     writer.newLine();
                 }
             }
