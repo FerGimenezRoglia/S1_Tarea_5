@@ -4,7 +4,6 @@ import java.io.*;
 
 public class ReadTxt {
 
-
     public static void readFileTxt(String path) {
 
         File file = new File(path);
@@ -16,6 +15,7 @@ public class ReadTxt {
                 String line = reader.readLine();
                 while (line != null) {
                     System.out.println(line);
+                    line = reader.readLine();
                 }
 
             } catch (IOException e) {

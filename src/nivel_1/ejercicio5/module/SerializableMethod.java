@@ -9,16 +9,17 @@ public class SerializableMethod {
 
         Person person = new Person("Rolo", 40);
 
-        serializePerson(person);
+        String filePath = "resources" + File.separator + "person.ser";
 
-        deserializePerson();
+        serializePerson(person, filePath);
+
+        deserializePerson(filePath);
 
     }
 
-    public static void serializePerson(Person person) {
+    public static void serializePerson(Person person, String filePath) {
 
         try {
-            String filePath = "person.ser";
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(filePath));
             objectOutputStream.writeObject(person);
 
@@ -31,10 +32,10 @@ public class SerializableMethod {
         }
     }
 
-    public static void deserializePerson() {
+    public static void deserializePerson(String filePath) {
 
         try {
-            ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("person.ser"));
+            ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(filePath));
             Person person = (Person) objectInputStream.readObject();
 
             System.out.println("Deserialized object: " + person);

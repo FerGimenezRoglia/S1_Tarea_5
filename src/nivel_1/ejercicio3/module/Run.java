@@ -1,11 +1,10 @@
 package nivel_1.ejercicio3.module;
 
-
 import static nivel_1.ejercicio3.module.ModifiedDirectoryTree.listDirectoryTreeModified;
 
 public class Run {
 
-    public static void runningExercise(String[] args){
+    public static void executeExercise(String[] args){
 
         if (args.length == 2) {
 
