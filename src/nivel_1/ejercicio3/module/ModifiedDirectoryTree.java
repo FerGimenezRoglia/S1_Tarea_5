@@ -1,4 +1,4 @@
-package nivel_1.ejercicio3;
+package nivel_1.ejercicio3.module;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -51,9 +51,9 @@ public class ModifiedDirectoryTree {
                 if (file.isDirectory()) {
                     writer.write(indentation + "Type [D] " + file.getName() + " __ " + lastModified);
                     writer.newLine();
-                    listTreeRecursively(file, writer,depth + 1);
+                    listTreeRecursively(file, writer, depth + 1);
 
-                } else {
+                } else if (file.isFile()) {
                     writer.write(indentation + "Type [F] " + file.getName() + " __ " + lastModified);
                     writer.newLine();
                 }
@@ -62,9 +62,6 @@ public class ModifiedDirectoryTree {
         } else {
             System.out.println("The directory is empty.");
         }
-
     }
-
-
 }
 

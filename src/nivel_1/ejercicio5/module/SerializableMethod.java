@@ -1,4 +1,4 @@
-package nivel_1.ejercicio5;
+package nivel_1.ejercicio5.module;
 
 import java.io.*;
 
@@ -21,11 +21,13 @@ public class SerializableMethod {
             String filePath = "person.ser";
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(filePath));
             objectOutputStream.writeObject(person);
+
             System.out.println("Serialized object: " + person);
+
             objectOutputStream.close();
 
         } catch (IOException e) {
-            System.out.println("Error durante la serialización: " + e.getMessage());
+            System.out.println("Error during serialization: " + e.getMessage());
         }
     }
 
@@ -34,6 +36,7 @@ public class SerializableMethod {
         try {
             ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("person.ser"));
             Person person = (Person) objectInputStream.readObject();
+
             System.out.println("Deserialized object: " + person);
 
         } catch (IOException | ClassNotFoundException e) {

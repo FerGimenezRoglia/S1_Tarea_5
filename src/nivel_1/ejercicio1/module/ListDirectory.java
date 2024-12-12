@@ -1,8 +1,6 @@
-package nivel_1.ejercicio1;
+package nivel_1.ejercicio1.module;
 
 import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class ListDirectory {

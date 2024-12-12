@@ -1,4 +1,4 @@
-package nivel_1.ejercicio2;
+package nivel_1.ejercicio2.module;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -37,16 +37,17 @@ public class DirectoryTree {
             SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
 
             for (File file : files) {
+
                 String indentation = "   ".repeat(depth);
                 String lastModified = date.format(file.lastModified());
 
                 if (file.isDirectory()) {
-                    System.out.println("Type [D] " + file.getName() + " __ " + lastModified);
+                    System.out.println(indentation + "Type [D] " + file.getName() + " __ " + lastModified);
 
                     listTreeRecursively(file, depth + 1);
 
-                } else {
-                    System.out.println("Type [F] " + file.getName() + " __ " + lastModified);
+                } else if (file.isFile()) {
+                    System.out.println(indentation + "Type [F] " + file.getName() + " __ " + lastModified);
                 }
             }
         } else {

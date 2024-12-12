@@ -1,4 +1,4 @@
-package nivel_1.ejercicio4;
+package nivel_1.ejercicio4.module;
 
 import java.io.*;
 
@@ -19,7 +19,7 @@ public class ReadTxt {
                 }
 
             } catch (IOException e) {
-                System.out.println("Error al leer el archivo: " + e.getMessage());
+                System.out.println("Error reading file: " + e.getMessage());
             }
 
         }else{
