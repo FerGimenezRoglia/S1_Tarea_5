@@ -7,60 +7,49 @@ import java.util.Arrays;
 public class ModifiedDirectoryTree {
 
     public static void listDirectoryTreeModified(String path, String saveFile) {
-
-        try {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(saveFile))) {
             File directory = new File(path);
 
             if (directory.exists() && directory.isDirectory()) {
-
-                try (BufferedWriter writer = new BufferedWriter(new FileWriter(saveFile))) {
-
-                    listTreeRecursively(directory, writer, 0);
-
-                } catch (IOException e) {
-                    System.out.println("Error: " + e.getMessage());
-                }
-
+                listTreeRecursively(directory, writer, 0);
             } else {
-                System.out.println("The specified path is invalid or is not a directory.");
+                System.out.println("The specified directory is invalid or does not exist.");
             }
-        } catch (SecurityException e) {
-            System.out.println("Security error: Access to the directory is denied.");
-
-        } catch (Exception e) {
-            System.out.println("An unexpected error occurred: " + e.getMessage());
+        } catch (IOException | SecurityException e) {
+            System.out.println("Error handling file or directory: " + e.getMessage());
         }
-
     }
 
-    public static void listTreeRecursively(File directory, BufferedWriter writer, int depth) throws IOException {
+    public static void listTreeRecursively(File directory, BufferedWriter writer, int depth) {
 
-        File[] files = directory.listFiles();
+        try {
+            File[] files = directory.listFiles();
 
-        if (files != null) {
+            if (files != null) {
+                Arrays.sort(files);
 
-            Arrays.sort(files);
+                SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
-            SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                for (File file : files) {
+                    String indentation = "   ".repeat(depth);
+                    String lastModified = date.format(file.lastModified());
 
-            for (File file : files) {
-
-                String indentation = "   ".repeat(depth);
-                String lastModified = date.format(file.lastModified());
-
-                if (file.isDirectory()) {
-                    writer.write(indentation + "Type [D] " + file.getName() + " __ " + lastModified);
-                    writer.newLine();
-                    listTreeRecursively(file, writer, depth + 1);
-
-                } else if (file.isFile()) {
-                    writer.write(indentation + "Type [F] " + file.getName() + " __ " + lastModified);
-                    writer.newLine();
+                    if (file.isDirectory()) {
+                        writer.write(indentation + "Type [D] " + file.getName() + " __ " + lastModified);
+                        writer.newLine();
+                        listTreeRecursively(file, writer, depth + 1); // Recursión
+                    } else if (file.isFile()) {
+                        writer.write(indentation + "Type [F] " + file.getName() + " __ " + lastModified);
+                        writer.newLine();
+                    }
                 }
+            } else {
+                writer.write("The directory is empty.");
+                writer.newLine();
             }
 
-        } else {
-            System.out.println("The directory is empty.");
+        } catch (IOException e) {
+            System.out.println("Error processing directory: " + directory.getName() + ": " + e.getMessage());
         }
     }
 }
